@@ -2,12 +2,14 @@
 const select_mvp = document.getElementById("select-boss");
 const select_spot = document.getElementById("select-spot");
 const select_time = document.getElementById("select-time");
-const table_boss = document.getElementById("table-boss")
+const table_boss = document.getElementById("table-boss");
+const url = "https://ragnarokapi.herokuapp.com/api/v1.0/monster/";
+
+var id_boss = [1059, 1511, 1096, 1388, 1785, 1039];
 
 /* var keyapi = "?apiKey=91d8c57dbde07fb4532a90ee8f61af4c"; *USAR, CASO FOR API-DIVINEPRIDE PRIDE* */
 
-const url = "https://ragnarokapi.herokuapp.com/api/v1.0/monster/";
-const id_boss = [1059, 1511, 1096, 1388, 1785, 1039]
+
 /* FIM VARIAVEIS GLOBAIS */
 
 function getApi(id_boss) {
