@@ -37,12 +37,16 @@ body {
 .list-boss,
 .map-boss,
 .input-time {
-    height: 30px;
+    height: 25px;
     width: 100%;
-    text-align: center;
+    text-align: justify;
     margin-top: 10px;
     margin-bottom: 30px;
     border-radius: 20px;
+}
+
+#select-time {
+    text-align: center;
 }
 
 table {
