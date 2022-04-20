@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "D:\\DEVELOPER\\projeto Gerador de Senha"
+		},
+		{
+			"path": ".."
+		},
+		{
+			"path": "..\\..\\projeto MVP_TIMER"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "MVP-TIMER 2.0"
+	}
+}

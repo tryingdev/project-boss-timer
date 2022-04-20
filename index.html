@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Respawn Boss</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body onload="main()">
+    <img src="assets/logo.png" alt="" class="logo">
+    <main class="container-main">
+        <div id="container-list"></div>
+        <span class="label">Selecione o MVP:</span>
+        <select class="list-boss" id="select-boss">
+            <option selected>-</option>
+        </select>
+        <div id="container-spot">
+            <span class="label">Selecione o SPOT:</span>
+            <select class="spot-boss" id="select-spot">
+                <option value="1">SPOT 1</option>
+                <option value="2">SPOT 2</option>
+                <option value="3">SPOT 3</option>
+                <option value="4">SPOT 4</option>
+                <option value="5">SPOT 5</option>
+                <option value="6">SPOT 6</option>
+                <option value="7">SPOT 7</option>
+                <option value="8">SPOT 8</option>
+                <option value="9">SPOT 9</option>
+            </select>
+        </div>
+        <div id="container-map">
+            <span class="label">Hora da morte:</span>
+            <input type="time" name="datetime" class="input-time" id="select-time">
+        </div>
+    </main>
+    <button class="btn btn-primary button-add" type="submit" onclick="fillTable()">Listar</button>
+    <table class="table table-bordered table-dark" id="table-boss">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">NOME</th>
+                <th scope="col">SPRITE</th>
+                <th scope="col">MAPA</th>
+                <th scope="col">SPOT</th>
+                <th scope="col">MORTE</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            </tr>
+        </tbody>
+    </table>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
