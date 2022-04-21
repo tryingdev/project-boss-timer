@@ -10,7 +10,7 @@
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body onload="main()">
+<body onload="main(), fillSelectSpot()">
     <img src="assets/logo.png" alt="" class="logo">
     <main class="container-main">
         <div id="container-list"></div>
@@ -21,15 +21,7 @@
         <div id="container-spot">
             <span class="label">Selecione o SPOT:</span>
             <select class="spot-boss" id="select-spot">
-                <option value="1">SPOT 1</option>
-                <option value="2">SPOT 2</option>
-                <option value="3">SPOT 3</option>
-                <option value="4">SPOT 4</option>
-                <option value="5">SPOT 5</option>
-                <option value="6">SPOT 6</option>
-                <option value="7">SPOT 7</option>
-                <option value="8">SPOT 8</option>
-                <option value="9">SPOT 9</option>
+                <option selected>-</option>
             </select>
         </div>
         <div id="container-map">

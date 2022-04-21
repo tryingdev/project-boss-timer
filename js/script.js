@@ -11,6 +11,11 @@ var id_boss = [1059, 1511, 1096, 1388, 1785, 1039];
 
 
 /* FIM VARIAVEIS GLOBAIS */
+function fillSelectSpot(){
+    for(let i = 1; i <= 9; i++){
+        select_spot.options[select_spot.options.length] = new Option('SPOT ' + i, 'value')
+    }
+}
 
 function getApi(id_boss) {
     let request = new XMLHttpRequest()
