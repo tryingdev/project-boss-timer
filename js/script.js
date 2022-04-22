@@ -37,6 +37,7 @@ function main() {
 
 /* TABELA */
 function fillTable(buttonText) {
+    
     let id_tbl = select_mvp.options[select_mvp.selectedIndex].value;
     let name_tbl = select_mvp.options[select_mvp.selectedIndex].text;
     let spot_tbl = select_spot.options[select_spot.selectedIndex].text;
@@ -59,7 +60,7 @@ function fillTable(buttonText) {
     if (boss.spawnMaps.length > 1) {
         cell_map.innerHTML = buttonText;
     } else {
-        cell_map.innerHTML = boss.spawnMaps[0].mapID;
+        cell_map.innerHTML = boss.spawnMaps[0].mapId;
     }
     cell_spot.innerHTML = spot_tbl;
     cell_death.innerHTML = death_tbl;
