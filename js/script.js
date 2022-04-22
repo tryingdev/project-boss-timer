@@ -4,7 +4,6 @@ const select_spot = document.getElementById("select-spot");
 const select_time = document.getElementById("select-time");
 const table_boss = document.getElementById("table-boss");
 const url = "https://ragnarokapi.herokuapp.com/api/v1.0/monster/";
-var myModal = document.getElementById('myModal')
 
 var id_boss = [1059, 1511, 1096, 1388, 1785, 1039, 1389];
 
@@ -28,8 +27,8 @@ function getApi(id_boss) {
 /* ALIMENTANDO SELECT */
 function main() {
     for (let i = 0; i < id_boss.length; i++) {
-        data = getApi(id_boss[i]);
-        boss = JSON.parse(data);
+        get = getApi(id_boss[i]);
+        boss = JSON.parse(get);
 
         select_mvp.options[select_mvp.options.length] = new Option(boss.name, boss.id);
     }
@@ -42,10 +41,6 @@ function fillTable(buttonText) {
     let name_tbl = select_mvp.options[select_mvp.selectedIndex].text;
     let spot_tbl = select_spot.options[select_spot.selectedIndex].text;
     let death_tbl = select_time.value;
-
-    id_boss = select_mvp.value
-    data = getApi(id_boss);
-    boss = JSON.parse(data);
 
     let amount_rows = table_boss.rows.length;
     let rows = table_boss.insertRow(amount_rows);
@@ -61,26 +56,29 @@ function fillTable(buttonText) {
     cell_id.innerHTML = id_tbl;
     cell_name.innerHTML = name_tbl;
     cell_sprite.innerHTML = `<img src=${boss.gifUrl}>`;;
-    if(boss.spawnMaps.length > 1){
+    if (boss.spawnMaps.length > 1) {
         cell_map.innerHTML = buttonText;
-    }else{
+    } else {
         cell_map.innerHTML = boss.spawnMaps[0].mapID;
     }
     cell_spot.innerHTML = spot_tbl;
     cell_death.innerHTML = death_tbl;
-    /* FIM TABELA */
-}
 
+}
+/* FIM TABELA */
+
+/* CONDIÇÕES DE INSERÇÃO CASO RESPAWN FOR MAIOR QUE 1*/
 function conditionsAddTable() {
+
     id_boss = select_mvp.value
-    data = getApi(id_boss);
-    boss = JSON.parse(data);
-    
+    get = getApi(id_boss);
+    boss = JSON.parse(get);
+
     if (boss.spawnMaps.length > 1) {
         $("#modalRespawn").modal('show');
         for (let i = 0; i < boss.spawnMaps.length; i++) {
             $("#button-map").append(`<button class="btn btn-primary button-add" type="submit" name="${boss.spawnMaps[i].mapId}" onclick="fillTable(this.name)">${boss.spawnMaps[i].mapId}</button>`)
-            $(":submit").on("click", function(){
+            $(":submit").on("click", function () {
                 $("#modalRespawn").modal('hide');
             });
         }
