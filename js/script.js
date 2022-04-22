@@ -4,15 +4,16 @@ const select_spot = document.getElementById("select-spot");
 const select_time = document.getElementById("select-time");
 const table_boss = document.getElementById("table-boss");
 const url = "https://ragnarokapi.herokuapp.com/api/v1.0/monster/";
+var myModal = document.getElementById('myModal')
 
-var id_boss = [1059, 1511, 1096, 1388, 1785, 1039];
+var id_boss = [1059, 1511, 1096, 1388, 1785, 1039, 1389];
 
 /* var keyapi = "?apiKey=91d8c57dbde07fb4532a90ee8f61af4c"; *USAR, CASO FOR API-DIVINEPRIDE PRIDE* */
 
 
 /* FIM VARIAVEIS GLOBAIS */
-function fillSelectSpot(){
-    for(let i = 1; i <= 9; i++){
+function fillSelectSpot() {
+    for (let i = 1; i <= 9; i++) {
         select_spot.options[select_spot.options.length] = new Option('SPOT ' + i, 'value')
     }
 }
@@ -36,7 +37,7 @@ function main() {
 /* FIM SELECT */
 
 /* TABELA */
-function fillTable() {
+function fillTable(buttonText) {
     let id_tbl = select_mvp.options[select_mvp.selectedIndex].value;
     let name_tbl = select_mvp.options[select_mvp.selectedIndex].text;
     let spot_tbl = select_spot.options[select_spot.selectedIndex].text;
@@ -45,7 +46,6 @@ function fillTable() {
     id_boss = select_mvp.value
     data = getApi(id_boss);
     boss = JSON.parse(data);
-    console.log(boss)
 
     let amount_rows = table_boss.rows.length;
     let rows = table_boss.insertRow(amount_rows);
@@ -61,8 +61,33 @@ function fillTable() {
     cell_id.innerHTML = id_tbl;
     cell_name.innerHTML = name_tbl;
     cell_sprite.innerHTML = `<img src=${boss.gifUrl}>`;;
-    cell_map.innerHTML = boss.spawnMaps[0].mapId;
+    if(boss.spawnMaps.length > 1){
+        cell_map.innerHTML = buttonText;
+    }else{
+        cell_map.innerHTML = boss.spawnMaps[0].mapID;
+    }
     cell_spot.innerHTML = spot_tbl;
     cell_death.innerHTML = death_tbl;
     /* FIM TABELA */
+}
+
+function conditionsAddTable() {
+    id_boss = select_mvp.value
+    data = getApi(id_boss);
+    boss = JSON.parse(data);
+    
+    if (boss.spawnMaps.length > 1) {
+        $("#modalRespawn").modal('show');
+        for (let i = 0; i < boss.spawnMaps.length; i++) {
+            $("#button-map").append(`<button class="btn btn-primary button-add" type="submit" name="${boss.spawnMaps[i].mapId}" onclick="fillTable(this.name)">${boss.spawnMaps[i].mapId}</button>`)
+            $(":submit").on("click", function(){
+                $("#modalRespawn").modal('hide');
+            });
+        }
+        $("#modalRespawn").on("hidden.bs.modal", function () {
+            $(".modal-body", "#modalRespawn").empty();
+        });
+    } else {
+        fillTable();
+    }
 }
