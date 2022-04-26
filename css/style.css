@@ -62,9 +62,14 @@ table {
     width: 150px;
 }
 
-#button-map{
+#button-map {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+.rowboss:hover {
+    transition: 0.1s;
+    opacity: 0.7;
 }
