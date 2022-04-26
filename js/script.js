@@ -6,6 +6,7 @@ const table_boss = document.getElementById("table-boss");
 const url = "https://ragnarokapi.herokuapp.com/api/v1.0/monster/";
 
 var id_boss = [1059, 1511, 1096, 1388, 1785, 1039, 1389];
+var id_rows = ''
 
 /* var keyapi = "?apiKey=91d8c57dbde07fb4532a90ee8f61af4c"; *USAR, CASO FOR API-DIVINEPRIDE PRIDE* */
 
@@ -37,7 +38,7 @@ function main() {
 
 /* TABELA */
 function fillTable(buttonText) {
-    
+
     let id_tbl = select_mvp.options[select_mvp.selectedIndex].value;
     let name_tbl = select_mvp.options[select_mvp.selectedIndex].text;
     let spot_tbl = select_spot.options[select_spot.selectedIndex].text;
@@ -45,7 +46,10 @@ function fillTable(buttonText) {
 
     let amount_rows = table_boss.rows.length;
     let rows = table_boss.insertRow(amount_rows);
-
+    rows.id = id_tbl
+    id_rows = rows.id
+    rows.setAttribute('onclick', 'clickRows();')
+    rows.setAttribute('class', 'rowboss')
 
     let cell_id = rows.insertCell(0);
     let cell_name = rows.insertCell(1);
@@ -89,4 +93,20 @@ function conditionsAddTable() {
     } else {
         fillTable();
     }
+}
+
+function delRow() {
+    document.getElementById(id_rows).remove();
+}
+
+function clickRows() {
+    $("#modalRemove").modal('show');
+    $("#button-remove").append(`<div><button class="btn btn-primary button-add" type="submit" name="REMOVER" onclick="delRow();">REMOVER</button></div>`)
+    $("#button-remove").append(`<div><button class="btn btn-primary button-add" type="submit" name="RESETAR" onclick="">RESETAR</button></div>`)
+    $("#modalRemove").on("hidden.bs.modal", function () {
+        $(".modal-body", "#modalRemove").empty();
+    });
+    $(":submit").on("click", function () {
+        $("#modalRemove").modal('hide');
+    });
 }
