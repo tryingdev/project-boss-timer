@@ -6,7 +6,6 @@ const table_boss = document.getElementById("table-boss");
 const url = "https://ragnarokapi.herokuapp.com/api/v1.0/monster/";
 
 var id_boss = [1059, 1511, 1096, 1388, 1785, 1039, 1389];
-var id_rows = ''
 
 /* var keyapi = "?apiKey=91d8c57dbde07fb4532a90ee8f61af4c"; *USAR, CASO FOR API-DIVINEPRIDE PRIDE* */
 
@@ -46,9 +45,6 @@ function fillTable(buttonText) {
 
     let amount_rows = table_boss.rows.length;
     let rows = table_boss.insertRow(amount_rows);
-    rows.id = id_tbl
-    id_rows = rows.id
-    rows.setAttribute('onclick', 'clickRows();')
     rows.setAttribute('class', 'rowboss')
 
     let cell_id = rows.insertCell(0);
@@ -57,10 +53,11 @@ function fillTable(buttonText) {
     let cell_map = rows.insertCell(3);
     let cell_spot = rows.insertCell(4);
     let cell_death = rows.insertCell(5);
+    let cell_btnsaction = rows.insertCell(6);
 
     cell_id.innerHTML = id_tbl;
     cell_name.innerHTML = name_tbl;
-    cell_sprite.innerHTML = `<img src=${boss.gifUrl}>`;;
+    cell_sprite.innerHTML = `<img src=${boss.gifUrl}>`;
     if (boss.spawnMaps.length > 1) {
         cell_map.innerHTML = buttonText;
     } else {
@@ -68,7 +65,7 @@ function fillTable(buttonText) {
     }
     cell_spot.innerHTML = spot_tbl;
     cell_death.innerHTML = death_tbl;
-
+    cell_btnsaction.innerHTML = `<div><button class="btn btn-danger button-add btndel" type="submit" onclick="delRow(event.target)">Remover</button></div><div><button class="btn btn-success button-add btnres" type="submit" onclick="">Resetar</button></div>`
 }
 /* FIM TABELA */
 
@@ -95,18 +92,7 @@ function conditionsAddTable() {
     }
 }
 
-function delRow() {
-    document.getElementById(id_rows).remove();
-}
-
-function clickRows() {
-    $("#modalRemove").modal('show');
-    $("#button-remove").append(`<div><button class="btn btn-primary button-add" type="submit" name="REMOVER" onclick="delRow();">REMOVER</button></div>`)
-    $("#button-remove").append(`<div><button class="btn btn-primary button-add" type="submit" name="RESETAR" onclick="">RESETAR</button></div>`)
-    $("#modalRemove").on("hidden.bs.modal", function () {
-        $(".modal-body", "#modalRemove").empty();
-    });
-    $(":submit").on("click", function () {
-        $("#modalRemove").modal('hide');
-    });
-}
+/* REMOVE LINHA - REFERENTE AO BOTÃO CLICADO*/
+function delRow(btnClick) {
+    btnClick.closest("tr").remove();
+  }
